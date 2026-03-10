@@ -1,0 +1,202 @@
+[
+  {
+    "id": "http_error_rate",
+    "query": "HTTP 5xx error rate for api-gateway over the last 5 minutes",
+    "expected_metrics": ["http_requests_total"],
+    "expected_functions": ["rate"],
+    "category": "rate",
+    "difficulty": "easy"
+  },
+  {
+    "id": "http_latency_p99",
+    "query": "99th percentile HTTP request latency for api-gateway over 5 minutes",
+    "expected_metrics": ["http_request_duration_seconds"],
+    "expected_functions": ["histogram_quantile", "rate"],
+    "category": "histogram",
+    "difficulty": "medium"
+  },
+  {
+    "id": "http_latency_p95",
+    "query": "p95 latency for the orders endpoint over the last 10 minutes",
+    "expected_metrics": ["http_request_duration_seconds"],
+    "expected_functions": ["histogram_quantile", "rate"],
+    "category": "histogram",
+    "difficulty": "medium"
+  },
+  {
+    "id": "http_rps",
+    "query": "HTTP requests per second for api-gateway broken down by handler",
+    "expected_metrics": ["http_requests_total"],
+    "expected_functions": ["rate"],
+    "category": "rate",
+    "difficulty": "easy"
+  },
+  {
+    "id": "http_in_flight",
+    "query": "current number of in-flight HTTP requests for api-gateway",
+    "expected_metrics": ["http_requests_in_flight"],
+    "expected_functions": [],
+    "category": "gauge",
+    "difficulty": "easy"
+  },
+  {
+    "id": "payment_success_rate",
+    "query": "payment transaction success rate over the last 5 minutes",
+    "expected_metrics": ["payment_transactions_total"],
+    "expected_functions": ["rate"],
+    "category": "rate",
+    "difficulty": "medium"
+  },
+  {
+    "id": "payment_error_rate",
+    "query": "rate of payment errors by error type over 5 minutes",
+    "expected_metrics": ["payment_errors_total"],
+    "expected_functions": ["rate"],
+    "category": "rate",
+    "difficulty": "easy"
+  },
+  {
+    "id": "payment_p99_latency",
+    "query": "p99 payment processing duration by payment method over 5 minutes",
+    "expected_metrics": ["payment_processing_duration_seconds"],
+    "expected_functions": ["histogram_quantile", "rate"],
+    "category": "histogram",
+    "difficulty": "medium"
+  },
+  {
+    "id": "payment_queue_depth",
+    "query": "current payment queue depth",
+    "expected_metrics": ["payment_queue_depth"],
+    "expected_functions": [],
+    "category": "gauge",
+    "difficulty": "easy"
+  },
+  {
+    "id": "payment_transaction_volume",
+    "query": "total payment transaction volume over the last hour by payment method",
+    "expected_metrics": ["payment_transactions_total"],
+    "expected_functions": ["increase"],
+    "category": "counter",
+    "difficulty": "medium"
+  },
+  {
+    "id": "db_connection_active",
+    "query": "current active database connections for postgres",
+    "expected_metrics": ["db_connections_active"],
+    "expected_functions": [],
+    "category": "gauge",
+    "difficulty": "easy"
+  },
+  {
+    "id": "db_connection_pool_usage",
+    "query": "database connection pool utilization percentage for postgres",
+    "expected_metrics": ["db_connections_active", "db_connections_max"],
+    "expected_functions": [],
+    "category": "ratio",
+    "difficulty": "hard"
+  },
+  {
+    "id": "db_query_rate",
+    "query": "database query rate for postgres broken down by operation over 5 minutes",
+    "expected_metrics": ["db_queries_total"],
+    "expected_functions": ["rate"],
+    "category": "rate",
+    "difficulty": "easy"
+  },
+  {
+    "id": "db_error_rate",
+    "query": "rate of failed database queries over the last 5 minutes",
+    "expected_metrics": ["db_queries_total"],
+    "expected_functions": ["rate"],
+    "category": "rate",
+    "difficulty": "easy"
+  },
+  {
+    "id": "db_query_p99",
+    "query": "99th percentile query duration for postgres select operations over 5 minutes",
+    "expected_metrics": ["db_query_duration_seconds"],
+    "expected_functions": ["histogram_quantile", "rate"],
+    "category": "histogram",
+    "difficulty": "medium"
+  },
+  {
+    "id": "cache_hit_rate",
+    "query": "redis cache hit rate over the last 5 minutes",
+    "expected_metrics": ["db_cache_hits_total", "db_cache_misses_total"],
+    "expected_functions": ["rate"],
+    "category": "ratio",
+    "difficulty": "hard"
+  },
+  {
+    "id": "cache_hits_per_second",
+    "query": "redis cache hits per second over 5 minutes",
+    "expected_metrics": ["db_cache_hits_total"],
+    "expected_functions": ["rate"],
+    "category": "rate",
+    "difficulty": "easy"
+  },
+  {
+    "id": "replication_lag",
+    "query": "current database replication lag by replica",
+    "expected_metrics": ["db_replication_lag_seconds"],
+    "expected_functions": [],
+    "category": "gauge",
+    "difficulty": "easy"
+  },
+  {
+    "id": "node_cpu",
+    "query": "CPU usage percentage per node over the last 5 minutes",
+    "expected_metrics": ["node_cpu_seconds_total"],
+    "expected_functions": ["rate"],
+    "category": "rate",
+    "difficulty": "medium"
+  },
+  {
+    "id": "node_memory",
+    "query": "available memory in bytes per node",
+    "expected_metrics": ["node_memory_MemAvailable_bytes"],
+    "expected_functions": [],
+    "category": "gauge",
+    "difficulty": "easy"
+  },
+  {
+    "id": "node_disk_usage",
+    "query": "disk usage percentage per mount point",
+    "expected_metrics": ["node_filesystem_avail_bytes", "node_filesystem_size_bytes"],
+    "expected_functions": [],
+    "category": "ratio",
+    "difficulty": "hard"
+  },
+  {
+    "id": "node_network_rx",
+    "query": "network receive bytes per second per interface over 5 minutes",
+    "expected_metrics": ["node_network_receive_bytes_total"],
+    "expected_functions": ["rate"],
+    "category": "rate",
+    "difficulty": "easy"
+  },
+  {
+    "id": "http_error_ratio",
+    "query": "ratio of 5xx errors to total HTTP requests over 5 minutes for api-gateway",
+    "expected_metrics": ["http_requests_total"],
+    "expected_functions": ["rate"],
+    "category": "ratio",
+    "difficulty": "hard"
+  },
+  {
+    "id": "top_slowest_handlers",
+    "query": "top 5 slowest HTTP handlers by p99 latency over 5 minutes",
+    "expected_metrics": ["http_request_duration_seconds"],
+    "expected_functions": ["histogram_quantile", "topk", "rate"],
+    "category": "topk",
+    "difficulty": "hard"
+  },
+  {
+    "id": "payment_amount_p90",
+    "query": "90th percentile payment transaction amount over the last hour",
+    "expected_metrics": ["payment_amount_dollars"],
+    "expected_functions": ["histogram_quantile"],
+    "category": "histogram",
+    "difficulty": "medium"
+  }
+]
